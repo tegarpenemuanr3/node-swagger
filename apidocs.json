@@ -1,0 +1,358 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API Penjualan",
+    "description": "Api Penjualan Produk",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/api",
+      "description": "localhost"
+    },
+    {
+      "url": "https://umkm.com/api/",
+      "description": "hosting"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Jenis",
+      "description": "Kategori Produk"
+    }
+  ],
+  "paths": {
+    "/jenis": {
+      "post": {
+        "tags": ["Jenis"],
+        "summary": "Menambahkan data",
+        "description": "Menambahkan kategori barang",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "example": 1
+                  },
+                  "nama": {
+                    "type": "string",
+                    "example": "Elektonik"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "example": 1
+                    },
+                    "nama": {
+                      "type": "string",
+                      "example": "Elektonik"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Invalid Request"
+                    },
+                    "data": {
+                      "properties": {
+                        "message": {
+                          "type": "string",
+                          "example": "Bad Request"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Unauthorized"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Service Error"
+          }
+        }
+      },
+      "get": {
+        "tags": ["Jenis"],
+        "summary": "Menampilkan semua kategori produk",
+        "description": "Menampilkan semua kategori",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "body": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  },
+                  "example": [
+                    {
+                      "id": 1,
+                      "nama": "Elektronik"
+                    },
+                    {
+                      "id": 2,
+                      "nama": "Makanan"
+                    },
+                    {
+                      "id": 3,
+                      "nama": "Minuman"
+                    },
+                    {
+                      "id": 4,
+                      "nama": "Furniture"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Invalid Request"
+                    },
+                    "data": {
+                      "properties": {
+                        "message": {
+                          "type": "string",
+                          "example": "Bad Request"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Unauthorized"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Service Error"
+          }
+        }
+      }
+    },
+    "/jenis/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "_description": "Id jenis",
+          "type": "integer"
+        }
+      ],
+      "put": {
+        "summary": "Mengupdate data",
+        "description": "Mengupdate data",
+        "tags": ["Jenis"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nama": {
+                    "type": "string",
+                    "example": "Elektonik"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Status": {
+                      "type": "string",
+                      "example": "Data berhasil di update"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Invalid Request"
+                    },
+                    "data": {
+                      "properties": {
+                        "message": {
+                          "type": "string",
+                          "example": "Bad Request"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Unauthorized"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Service Error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Menghapus data produk",
+        "description": "Menghapus data",
+        "tags": ["Jenis"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Status": {
+                      "type": "string",
+                      "example": "Data berhasil di hapus"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Invalid Request"
+                    },
+                    "data": {
+                      "properties": {
+                        "message": {
+                          "type": "string",
+                          "example": "Bad Request"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Unauthorized"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Service Error"
+          }
+        }
+      }
+    }
+  }
+}

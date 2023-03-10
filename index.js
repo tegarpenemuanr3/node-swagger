@@ -1,7 +1,10 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const knex = require("./src/config/postgres");
+
 const app = express();
 app.use(bodyParser.json());
+
 const port = 3000;
 
 // * Swagger
@@ -9,15 +12,9 @@ const swaggerUi = require("swagger-ui-express");
 const apiDocumentation = require("./apidocs.json");
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(apiDocumentation));
 
-const knex = require("knex")({
-  client: "pg",
-  connection: {
-    host: "localhost",
-    user: "postgres",
-    password: "12345678",
-    database: "dbpenjualan",
-  },
-});
+// * Routes
+const router = require("./src/routes/routes");
+app.use("/jenis", router);
 
 app.get("/api/jenis", async (req, res) => {
   try {
